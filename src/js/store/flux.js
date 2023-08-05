@@ -1,44 +1,57 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			swapiUrl: "https://www.swapi.tech/api/",
+			people: JSON.parse(localStorage.getItem("people")) || [],
+			vehicles: JSON.parse(localStorage.getItem("vehicles")) || [],
+			planets: JSON.parse(localStorage.getItem("planets")) || [],
+			favorites: [],
 		},
+
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
+			getSwapiDataByEndpoint: async (endpoint) => {
 				const store = getStore();
+				if (store[endpoint].length == 10) return;
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
+				try {
+					const response = await fetch(store.swapiUrl + endpoint);
+					if (response.ok) {
+						const data = await response.json();
+						const baseList = data.results;
+						baseList.forEach(async (baseItem) => {
+							const detailResponse = await fetch(baseItem.url);
+							const detailData = await detailResponse.json();
+							setStore({
+								[endpoint]: [...store[endpoint], detailData.result],
+							});
+							if (store[endpoint].length == 10) {
+								let stringifiedValue = JSON.stringify(store[endpoint]);
+								console.log(stringifiedValue);
+								localStorage.setItem(endpoint, stringifiedValue);
+							}
+						});
+					}
+				} catch (error) {
+					alert("Warning Error");
+					console.log(error);
+				}
+			},
+
+			addFavorite: (item) => {
+				const store = getStore();
+				setStore({ favorites: [...store.favorites, item] });
+			},
+			deleteFavorite: (id) => {
+				const store = getStore();
+				const filteredList = store.favorites.filter(
+					(item, index) => id !== index
+				);
+				setStore({
+					favorites: filteredList,
 				});
+			},
 
-				//reset the global store
-				setStore({ demo: demo });
-			}
-		}
+		},
 	};
 };
 
