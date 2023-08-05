@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import { Context } from '../store/appContext';
 
 const Navbar = ({ index }) => {
-    const { actions } = useContext(Context);
+    const { store, actions } = useContext(Context);
 
+    const [itemList, setItemList] = useState();
     const handleDelete = (index) => {
-        actions.deleteContact(index);
+        actions.deleteFavorite(index);
     };
+
 
     return (
         <div className="navbar bg-black">
@@ -20,15 +22,20 @@ const Navbar = ({ index }) => {
                         Favorites
                     </button>
                     <ul className="dropdown-menu">
-                        <li className="list-group-item" key={index} >
-                            <button type="button" className="btn-close" onClick={() => handleDelete(index)}></button>
-                        </li>
+                        {itemList.map((index) => {
+                            return (
+                                <li className="list-group-item" key={{ index }} >
+                                    {index.label}
+                                    <button type="button" className="btn-close" onClick={() => handleDelete(index)}></button>
+                                </li>
+                            )
+                        })};
+
                     </ul>
                 </div>
             </div>
         </div >
-    )
-
+    );
 }
 
 
