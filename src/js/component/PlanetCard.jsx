@@ -15,7 +15,7 @@ export const PlanetCard = ({ img, planet }) => {
             <>
                 <div className="row">
                     <div className="card m-2 col-12">
-                        <img src={img} className="m-2" alt="..." />
+                        <img src={`https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`} className="h-75 m-2" alt="..." />
                         <div className="card-body container">
                             <h5 className="card-title">{planet.properties.name}</h5>
                             <p className="card-text">Population: {planet.properties.population} </p>

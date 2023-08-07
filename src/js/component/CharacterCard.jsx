@@ -16,9 +16,10 @@ export const CharacterCard = ({ img, character }) => {
             <>
                 <div className="row">
                     <div className="card m-2 col-12" >
-                        <img src={img} className="m-2" alt="..." />
+                        <img src={`https://starwars-visualguide.com/assets/img/characters/${character.uid}.jpg`} className="h-75 m-2" alt="..." />
                         <div className="card-body">
                             <h5 className="card-title">{character.properties.name}</h5>
+                            <p className="card-text">Gender: {character.properties.gender} </p>
                             <p className="card-text">Eye Color: {character.properties.eye_color} </p>
                             <p className="card-text">Hair Color: {character.properties.hair_color} </p>
 
