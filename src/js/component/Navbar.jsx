@@ -5,7 +5,7 @@ import { Context } from '../store/appContext';
 const Navbar = ({ index }) => {
     const { store, actions } = useContext(Context);
 
-    const [itemList, setItemList] = useState();
+    const [itemList, setItemList] = useState([]);
     const handleDelete = (index) => {
         actions.deleteFavorite(index);
     };
@@ -22,14 +22,15 @@ const Navbar = ({ index }) => {
                         Favorites
                     </button>
                     <ul className="dropdown-menu">
-                        {itemList.map((index) => {
+                        {store.favorites.map((favorite) => {
+                            console.log(favorite)
                             return (
-                                <li className="list-group-item" key={{ index }} >
-                                    {index.label}
-                                    <button type="button" className="btn-close" onClick={() => handleDelete(index)}></button>
+                                <li className="list-group-item" key={favorite._id} >
+                                    {favorite.properties.name}
+                                    <button type="button" className="btn-close" onClick={() => handleDelete(favorite._id)}></button>
                                 </li>
                             )
-                        })};
+                        })}
 
                     </ul>
                 </div>
