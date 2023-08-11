@@ -7,7 +7,7 @@ import Section from "../component/Section.jsx";
 
 export const Home = () => {
     return (
-        <div className="container m-5">
+        <div className="m-5">
             <Section title="Characters" currentSection={"people"}></Section>
             <Section title="Planets" currentSection={"planets"}></Section>
         </div>

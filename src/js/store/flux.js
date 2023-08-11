@@ -39,7 +39,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			addFavorite: (favorite) => {
 				const store = getStore();
-				setStore({ favorites: [...store.favorites, favorite] });
+				console.log(favorite)
+				const oneFavorite = store.favorites.some((item) => item === favorite);
+				if (!oneFavorite) {
+					setStore({ favorites: [...store.favorites, favorite] });
+					return;
+				}
+				const favoritesFiltered = store.favorites.filter((item) => {
+					return favorite !== item;
+				});
+				setStore({ favorites: [...favoritesFiltered] });
 			},
 
 			deleteFavorite: (id) => {
