@@ -1,6 +1,6 @@
 import React from 'react'
 
-const StarshipDetailCard = ({ img, name, model, manufacturer, passengers }) => {
+export const StarshipDetailCard = ({ img, name, model, manufacturer, passengers }) => {
     return (
         <>
             <div className="container d-flex m-5 gap-5">

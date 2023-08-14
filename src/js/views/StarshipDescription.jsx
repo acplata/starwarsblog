@@ -31,7 +31,7 @@ const StarshipDescription = () => {
         <>
             <StarshipDetailCard
                 name={vehiclesDetails.properties?.name}
-                img="https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/04/16/5ad4e8c370e68e282f66ed87_falcon.png.rend.hgtvcom.966.690.suffix/1573241270725.png"
+                img="https://upload.wikimedia.org/wikipedia/en/1/1b/Princess_Leia%27s_characteristic_hairstyle.jpg"
                 model={vehiclesDetails.properties?.model}
                 manufacturer={vehiclesDetails.properties?.manufacturer}
                 passengers={vehiclesDetails.properties?.passengers}
@@ -39,6 +39,6 @@ const StarshipDescription = () => {
         </>
 
     );
-}
+};
 
-export default StarshipDescription
+export default StarshipDescription;
