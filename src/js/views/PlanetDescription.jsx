@@ -31,7 +31,7 @@ const PlanetDescription = () => {
         <>
             <PlanetDetailCard
                 name={planetsDetails.properties?.name}
-                img="https://live-production.wcms.abc-cdn.net.au/d836d9cddfc48d2e90fb1aeaf9836b87?impolicy=wcms_crop_resize&cropH=567&cropW=1008&xPos=128&yPos=0&width=300&height=200"
+                img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPemoVZyttZguCTYrc4VZa3lbuOuS6bqFu0-f26VLE0QDQHLXEdowoWlb63lSJ8R3ytJc&usqp=CAU"
                 population={planetsDetails.properties?.population}
                 terrain={planetsDetails.properties?.terrain}
                 climate={planetsDetails.properties?.climate}

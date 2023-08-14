@@ -10,6 +10,7 @@ export const Home = () => {
         <div className="m-5">
             <Section title="Characters" currentSection={"people"}></Section>
             <Section title="Planets" currentSection={"planets"}></Section>
+            <Section title="Starships" currentSection={"vehicles"}></Section>
         </div>
 
     );
